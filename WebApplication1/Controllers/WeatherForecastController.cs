@@ -17,9 +17,14 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var apples = await _modelContext.APPLE.SingleAsync(x=>x.GID == "A1F9038890DF43C59E1E95D06AB400AD");
+            //var apples = await _modelContext.APPLE.SingleAsync(x=>x.GID == "A1F9038890DF43C59E1E95D06AB400AD");
+            var apples = await _modelContext.APPLE.Where(x => x.NAME == "Ä«ªG").ToListAsync();
 
-            apples.NAME = "Ä«ªG5";
+            foreach (var apple in apples)
+            {
+                apple.NAME = "123";
+            }
+
             var messge  = string.Empty;
             try
             {
